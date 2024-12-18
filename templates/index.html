@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yale Confidence Indices</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <span class="navbar-brand">Yale Confidence Indices</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <section id="about">
+            <h2 class="section-title">About the Indexes</h2>
+            
+            <div class="collapsible-section">
+                <div class="collapsible-header">Issues in Constructing Confidence Indices</div>
+                <div class="collapsible-content">
+                    <p>The construction of confidence indices involves careful consideration of survey methodologies, data collection processes, and statistical analysis. Key challenges include ensuring representative sampling, accounting for response bias, and maintaining consistency over time.</p>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header">Data</div>
+                <div class="collapsible-content">
+                    <p>The confidence indices are based on survey data collected from institutional investors and individual investors. The surveys are conducted regularly to track changes in market sentiment and investor confidence over time.</p>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header">Note</div>
+                <div class="collapsible-content">
+                    <p>These indices are intended to provide insights into market sentiment and should be considered alongside other market indicators. Historical data and methodologies are subject to periodic review and updates.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="text-center my-5">
+            <button class="download-button" onclick="downloadCSV()">Download Data</button>
+        </section>
+
+        <section id="plots">
+            <div class="plot-tabs">
+                <button id="tab-one-year" class="tab-button active" onclick="switchTab('one-year')">One-Year Confidence</button>
+                <button id="tab-crash" class="tab-button" onclick="switchTab('crash')">Crash Confidence</button>
+                <button id="tab-buy-dips" class="tab-button" onclick="switchTab('buy-dips')">Buy-on-Dips Confidence</button>
+                <button id="tab-valuation" class="tab-button" onclick="switchTab('valuation')">Valuation Confidence</button>
+            </div>
+
+            <div id="plot-container" class="plot-container"></div>
+
+            <div class="calculation-section">
+                <h3>Calculation and Survey Question</h3>
+                <div id="calculation-content">
+                    <p>The One-Year Confidence Index is calculated based on responses to the following survey question:</p>
+                    <p>"What do you think is the probability of a positive return for the stock market in the coming year?"</p>
+                    <p>The index represents the weighted average of responses, normalized to a 0-100 scale.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

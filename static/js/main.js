@@ -112,15 +112,15 @@ async function loadPlotData(plotType) {
             rangeslider: {
                 visible: true,
                 thickness: 0.03,
-                bgcolor: '#ffffff',
+                bgcolor: '#E5E5E5',
                 borderwidth: 1,
-                bordercolor: '#E5E5E5',
-                thickness: 0.03,
+                bordercolor: '#cccccc',
                 range: [dates[0], dates[dates.length - 1]],
                 selectedattrs: {
-                    bgcolor: '#E5E5E5'
+                    bgcolor: '#ffffff'
                 }
             },
+            range: ['2005-01-01', '2024-01-01'],
             rangeselector: {
                 visible: false
             },

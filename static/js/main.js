@@ -108,6 +108,7 @@ async function loadPlotData(plotType) {
                 b: 20
             }
         },
+        height: 600,
         xaxis: {
             title: '',
             showgrid: true,

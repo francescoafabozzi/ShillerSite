@@ -12,13 +12,24 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <span class="navbar-brand">Yale Confidence Indices</span>
+            <div class="yale-header">
+                <div class="yale-brand">
+                    <img src="{{ url_for('static', filename='images/yale-logo.png') }}" alt="Yale Logo" class="yale-logo">
+                    <div class="yale-text">
+                        <div class="yale-school">Yale School of Management</div>
+                        <div class="yale-center">International Center for Finance</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
     <div class="container mt-4">
+        <h1 class="main-title">United States Stock Market Confidence Indices</h1>
+        
         <section id="about">
-            <h2 class="section-title">About the Indexes</h2>
+            <h2 class="section-subtitle">About the Indexes</h2>
+            <hr class="section-divider">
             
             <div class="collapsible-section">
                 <div class="collapsible-header">Issues in Constructing Confidence Indices</div>

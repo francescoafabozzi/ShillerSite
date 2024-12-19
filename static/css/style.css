@@ -11,18 +11,60 @@ body {
 
 .navbar {
     background-color: var(--yale-blue);
+    padding: 1rem 0;
 }
 
-.navbar-brand {
-    color: var(--yale-white) !important;
-    font-weight: bold;
+.yale-header {
+    width: 100%;
+}
+
+.yale-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.yale-logo {
+    height: 60px;
+    width: auto;
+}
+
+.yale-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.yale-school {
+    color: var(--yale-white);
     font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
 }
 
-.section-title {
+.yale-center {
+    color: var(--yale-white);
+    font-size: 1.25rem;
+    line-height: 1.2;
+}
+
+.main-title {
     color: var(--yale-blue);
-    margin: 2rem 0;
+    font-size: 2rem;
     font-weight: 600;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.section-subtitle {
+    color: #000;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+}
+
+.section-divider {
+    border-top: 1px solid #ddd;
+    margin: 1rem 0;
 }
 
 .collapsible-section {

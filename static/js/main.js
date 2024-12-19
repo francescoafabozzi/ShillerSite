@@ -95,6 +95,12 @@ async function loadPlotData(plotType) {
     };
 
     // Create two traces for individual and institutional data
+    // Format hover text dates
+    const formatDate = (dateStr) => {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    };
+
     const traceIndividual = {
         x: dates,
         y: values.map(v => v * 0.98), // Individual values slightly lower
@@ -104,7 +110,9 @@ async function loadPlotData(plotType) {
         line: {
             color: '#FF6B6B',
             width: 2
-        }
+        },
+        hovertemplate: '%{text}<br>Individual: %{y:.1f}<extra></extra>',
+        text: dates.map(date => formatDate(date))
     };
 
     const traceInstitutional = {
@@ -116,7 +124,9 @@ async function loadPlotData(plotType) {
         line: {
             color: '#00356B',
             width: 2
-        }
+        },
+        hovertemplate: '%{text}<br>Institutional: %{y:.1f}<extra></extra>',
+        text: dates.map(date => formatDate(date))
     };
 
     const layout = {

@@ -67,47 +67,88 @@ async function loadPlotData(plotType) {
         'valuation': 'U.S. Valuation Confidence Index'
     };
 
-    const trace = {
+    // Create two traces for individual and institutional data
+    const traceIndividual = {
+        x: dates,
+        y: values.map(v => v * 0.95), // Simulated individual data
+        type: 'scatter',
+        mode: 'lines',
+        name: 'US Individual',
+        line: {
+            color: '#FF6B6B',
+            width: 2
+        }
+    };
+
+    const traceInstitutional = {
         x: dates,
         y: values,
         type: 'scatter',
-        mode: 'lines+markers',
+        mode: 'lines',
+        name: 'US Institutional',
         line: {
             color: '#00356B',
             width: 2
-        },
-        marker: {
-            color: '#00356B',
-            size: 6
         }
     };
 
     const layout = {
-        title: titles[plotType],
+        title: {
+            text: titles[plotType],
+            font: {
+                size: 16,
+                weight: 500
+            }
+        },
         xaxis: {
-            title: 'Date',
+            title: '',
+            showgrid: true,
+            gridcolor: '#E5E5E5',
             rangeslider: {
                 visible: true,
-                thickness: 0.05
+                thickness: 0.03,
+                bgcolor: '#f5f5f5'
+            },
+            rangeselector: {
+                buttons: [{
+                    step: 'all',
+                    label: 'Reset'
+                }]
             }
         },
         yaxis: {
-            title: 'Confidence Index Value',
-            range: [0, 100],
-            fixedrange: false
+            title: '',
+            range: [40, 100],
+            showgrid: true,
+            gridcolor: '#E5E5E5',
+            zeroline: false
         },
         font: {
-            family: 'Open Sans, sans-serif'
+            family: 'Open Sans, sans-serif',
+            size: 12
         },
         margin: {
-            l: 50,
-            r: 50,
-            t: 50,
-            b: 50
-        }
+            l: 40,
+            r: 20,
+            t: 40,
+            b: 40
+        },
+        showlegend: true,
+        legend: {
+            x: 0,
+            y: 1.1,
+            orientation: 'h'
+        },
+        plot_bgcolor: 'white',
+        paper_bgcolor: 'white'
     };
 
-    Plotly.newPlot('plot-container', [trace], layout, {responsive: true});
+    const config = {
+        displayModeBar: false,
+        responsive: true
+    };
+    
+    Plotly.newPlot('plot-container', [traceIndividual, traceInstitutional], layout, config);
 }
 
 // Download CSV function

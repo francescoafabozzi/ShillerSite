@@ -128,13 +128,7 @@ async function loadPlotData(plotType) {
             rangeselector: {
                 visible: false
             },
-            showspikes: false,
-            tickangle: -45,
-            tickfont: {
-                size: 10
-            },
-            tickformat: '%Y-%m',
-            dtick: 'M6'
+            showspikes: false
         },
         yaxis: {
             title: '',
@@ -152,10 +146,9 @@ async function loadPlotData(plotType) {
             l: 50,
             r: 30,
             t: 80,
-            b: 80,
+            b: 50,
             pad: 0
         },
-        height: 500,
         showlegend: true,
         legend: {
             x: 0,

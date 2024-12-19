@@ -194,7 +194,7 @@ async function loadPlotData(plotType) {
             zeroline: false,
             fixedrange: false,
             margin: {
-                l: 70
+                l: 50
             }
         },
         font: {
@@ -202,7 +202,7 @@ async function loadPlotData(plotType) {
             size: 12
         },
         margin: {
-            l: 80,
+            l: 50,
             r: 30,
             t: 100,
             b: 50,

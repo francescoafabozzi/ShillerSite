@@ -125,7 +125,15 @@ async function loadPlotData(plotType) {
         hoverinfo: 'text',
         text: hoverText,
         hoverlabel: {
-            align: 'left'
+            bgcolor: '#00356B',
+            bordercolor: '#ffffff',
+            font: {
+                family: 'Open Sans, sans-serif',
+                size: 14,
+                color: '#ffffff'
+            },
+            align: 'left',
+            padding: 15
         }
     };
 
@@ -142,7 +150,15 @@ async function loadPlotData(plotType) {
         hoverinfo: 'text',
         text: hoverText,
         hoverlabel: {
-            align: 'left'
+            bgcolor: '#00356B',
+            bordercolor: '#ffffff',
+            font: {
+                family: 'Open Sans, sans-serif',
+                size: 14,
+                color: '#ffffff'
+            },
+            align: 'left',
+            padding: 15
         }
     };
 

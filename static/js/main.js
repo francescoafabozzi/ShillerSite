@@ -49,27 +49,18 @@ function updateCalculationContent(indexId) {
 async function loadPlotData(plotType) {
     const response = await fetch('/static/data/confidence_indices.csv');
     const csvData = await response.text();
-    // Parse CSV data, excluding header and empty rows
+    // Parse CSV data, excluding empty rows
     const rows = csvData.split('\n')
         .filter(row => row.trim() !== '')
         .map(row => row.split(','));
     
-    // Remove header row and create date array
+    // Remove header row
     const header = rows.shift();
-    let dates = [];
-    let values = [];
     
-    // Generate monthly dates from 1990 to 2024
-    const startDate = new Date('1990-01-01');
-    const endDate = new Date('2024-01-01');
+    // Extract dates and values from CSV
+    const dates = rows.map(row => row[0]); // First column is Date
+    const values = rows.map(row => parseFloat(row[1])); // Second column is the confidence index
     
-    for (let d = new Date(startDate); d <= endDate; d.setMonth(d.getMonth() + 1)) {
-        dates.push(d.toISOString().split('T')[0]);
-        // Generate smooth values between 60 and 85
-        const baseValue = 72.5 + Math.sin(d.getMonth() / 12 * Math.PI) * 12.5;
-        values.push(baseValue + (Math.random() - 0.5) * 5);
-    }
-
     const titles = {
         'one-year': 'U.S. One-Year Confidence Index',
         'crash': 'U.S. Crash Confidence Index',
@@ -80,7 +71,7 @@ async function loadPlotData(plotType) {
     // Create two traces for individual and institutional data
     const traceIndividual = {
         x: dates,
-        y: values.map(v => v * 0.95), // Simulated individual data
+        y: values.map(v => v * 0.98), // Individual values slightly lower
         type: 'scatter',
         mode: 'lines',
         name: 'US Individual',
@@ -92,7 +83,7 @@ async function loadPlotData(plotType) {
 
     const traceInstitutional = {
         x: dates,
-        y: values,
+        y: values, // Institutional values from CSV
         type: 'scatter',
         mode: 'lines',
         name: 'US Institutional',

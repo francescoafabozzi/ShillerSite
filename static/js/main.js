@@ -57,9 +57,35 @@ async function loadPlotData(plotType) {
     // Remove header row
     const header = rows.shift();
     
-    // Extract dates and values from CSV
-    const dates = rows.map(row => row[0]); // First column is Date
-    const values = rows.map(row => parseFloat(row[1])); // Second column is the confidence index
+    // Group data by month and calculate averages
+    const monthlyData = new Map();
+    
+    rows.forEach(row => {
+        // Convert date to YYYY-MM format
+        const date = row[0].substring(0, 7); // Takes YYYY-MM part
+        const value = parseFloat(row[1]);
+        
+        if (!monthlyData.has(date)) {
+            monthlyData.set(date, { sum: value, count: 1 });
+        } else {
+            const current = monthlyData.get(date);
+            monthlyData.set(date, {
+                sum: current.sum + value,
+                count: current.count + 1
+            });
+        }
+    });
+    
+    // Convert Map to sorted arrays of dates and averaged values
+    const sortedData = Array.from(monthlyData.entries())
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map(([date, data]) => ({
+            date: date,
+            value: data.sum / data.count
+        }));
+    
+    const dates = sortedData.map(item => item.date);
+    const values = sortedData.map(item => item.value);
     
     const titles = {
         'one-year': 'U.S. One-Year Confidence Index',

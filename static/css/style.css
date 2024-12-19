@@ -86,8 +86,15 @@ body {
     background-color: #fff;
 }
 
+.plot-title {
+    color: var(--yale-blue);
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
 .plot-container {
-    margin: 2rem 0;
+    margin: 1rem 0;
     min-height: 600px;
 }
 

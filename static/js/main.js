@@ -17,6 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Handle index switching
 function switchIndex(indexId) {
+    const titles = {
+        'one-year': 'U.S. One-Year Confidence Index',
+        'crash': 'U.S. Crash Confidence Index',
+        'buy-dips': 'U.S. Buy-on-Dips Confidence Index',
+        'valuation': 'U.S. Valuation Confidence Index'
+    };
+    document.getElementById('plot-title').textContent = titles[indexId];
     loadPlotData(indexId);
     updateCalculationContent(indexId);
 }
@@ -96,18 +103,6 @@ async function loadPlotData(plotType) {
     };
 
     const layout = {
-        title: {
-            text: titles[plotType],
-            y: 0.98,
-            font: {
-                size: 16,
-                weight: 500
-            },
-            yanchor: 'bottom',
-            pad: {
-                b: 30
-            }
-        },
         height: 600,
         xaxis: {
             title: '',

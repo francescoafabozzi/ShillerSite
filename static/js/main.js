@@ -95,15 +95,26 @@ async function loadPlotData(plotType) {
     };
 
     // Create two traces for individual and institutional data
-    // Format hover text dates
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
         return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
     };
 
+    // Calculate both individual and institutional values
+    const individualValues = values.map(v => v * 0.98);
+    const institutionalValues = values;
+
+    // Create custom hover text arrays
+    const hoverText = dates.map((date, i) => {
+        const formattedDate = formatDate(date);
+        const indValue = individualValues[i].toFixed(1);
+        const instValue = institutionalValues[i].toFixed(1);
+        return `${formattedDate}<br>    Individual: ${indValue}<br>    Institutional: ${instValue}`;
+    });
+
     const traceIndividual = {
         x: dates,
-        y: values.map(v => v * 0.98), // Individual values slightly lower
+        y: individualValues,
         type: 'scatter',
         mode: 'lines',
         name: 'US Individual',
@@ -111,13 +122,16 @@ async function loadPlotData(plotType) {
             color: '#FF6B6B',
             width: 2
         },
-        hovertemplate: '%{text}<br>Individual: %{y:.1f}<extra></extra>',
-        text: dates.map(date => formatDate(date))
+        hoverinfo: 'text',
+        text: hoverText,
+        hoverlabel: {
+            align: 'left'
+        }
     };
 
     const traceInstitutional = {
         x: dates,
-        y: values, // Institutional values from CSV
+        y: institutionalValues,
         type: 'scatter',
         mode: 'lines',
         name: 'US Institutional',
@@ -125,8 +139,11 @@ async function loadPlotData(plotType) {
             color: '#00356B',
             width: 2
         },
-        hovertemplate: '%{text}<br>Institutional: %{y:.1f}<extra></extra>',
-        text: dates.map(date => formatDate(date))
+        hoverinfo: 'text',
+        text: hoverText,
+        hoverlabel: {
+            align: 'left'
+        }
     };
 
     const layout = {

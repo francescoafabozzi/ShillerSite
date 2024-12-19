@@ -30,12 +30,20 @@ body {
 }
 
 .collapsible-header {
-    background-color: var(--yale-blue);
-    color: var(--yale-white);
+    background-color: transparent;
+    color: #000;
     padding: 1rem;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapsible-header::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .collapsible-header:hover {
@@ -64,21 +72,18 @@ body {
     background-color: #004c99;
 }
 
-.plot-tabs {
+.index-selector {
     margin: 2rem 0;
+    max-width: 600px;
 }
 
-.tab-button {
-    padding: 0.5rem 1rem;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    cursor: pointer;
-}
-
-.tab-button.active {
-    background-color: var(--yale-blue);
-    color: var(--yale-white);
-    border-color: var(--yale-blue);
+.form-select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
 }
 
 .plot-container {

@@ -47,22 +47,20 @@
         </section>
 
         <section id="plots">
-            <div class="plot-tabs">
-                <button id="tab-one-year" class="tab-button active" onclick="switchTab('one-year')">One-Year Confidence</button>
-                <button id="tab-crash" class="tab-button" onclick="switchTab('crash')">Crash Confidence</button>
-                <button id="tab-buy-dips" class="tab-button" onclick="switchTab('buy-dips')">Buy-on-Dips Confidence</button>
-                <button id="tab-valuation" class="tab-button" onclick="switchTab('valuation')">Valuation Confidence</button>
+            <div class="index-selector">
+                <select id="index-select" class="form-select" onchange="switchIndex(this.value)">
+                    <option value="one-year">U.S. One-Year Confidence Index</option>
+                    <option value="crash">U.S. Crash Confidence Index</option>
+                    <option value="buy-dips">U.S. Buy-on-Dips Confidence Index</option>
+                    <option value="valuation">U.S. Valuation Confidence Index</option>
+                </select>
             </div>
 
             <div id="plot-container" class="plot-container"></div>
 
             <div class="calculation-section">
-                <h3>Calculation and Survey Question</h3>
-                <div id="calculation-content">
-                    <p>The One-Year Confidence Index is calculated based on responses to the following survey question:</p>
-                    <p>"What do you think is the probability of a positive return for the stock market in the coming year?"</p>
-                    <p>The index represents the weighted average of responses, normalized to a 0-100 scale.</p>
-                </div>
+                <h3>Question & Calculation:</h3>
+                <div id="calculation-content"></div>
             </div>
         </section>
     </div>

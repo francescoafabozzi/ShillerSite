@@ -1,27 +1,41 @@
-// Initialize collapsible sections
+// Initialize collapsible sections and calculation content
 document.addEventListener('DOMContentLoaded', function() {
     const collapsibles = document.querySelectorAll('.collapsible-header');
     collapsibles.forEach(header => {
         header.addEventListener('click', function() {
             const content = this.nextElementSibling;
-            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            const isExpanded = content.style.display === 'block';
+            content.style.display = isExpanded ? 'none' : 'block';
+            this.style.borderBottom = isExpanded ? '1px solid #ddd' : 'none';
+            this.querySelector('::after').textContent = isExpanded ? '+' : '-';
         });
     });
 
-    // Load initial plot
-    loadPlotData('one-year');
+    // Load initial plot and calculation
+    switchIndex('one-year');
 });
 
-// Handle tab switching
-function switchTab(tabId) {
-    // Update active tab
-    document.querySelectorAll('.tab-button').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    document.getElementById(`tab-${tabId}`).classList.add('active');
+// Handle index switching
+function switchIndex(indexId) {
+    loadPlotData(indexId);
+    updateCalculationContent(indexId);
+}
 
-    // Load corresponding plot
-    loadPlotData(tabId);
+// Update calculation content based on selected index
+function updateCalculationContent(indexId) {
+    const questions = {
+        'one-year': 'How much of a change in percentage terms do you expect in the following (use + before your number to indicate an increase)?',
+        'crash': 'What do you think is the probability of a catastrophic stock market crash in the U.S., like that of October 28, 1929 or October 19, 1987, in the next six months?',
+        'buy-dips': 'If the market drops 3% tomorrow, what would you expect it to do the day after tomorrow?',
+        'valuation': 'Stock market valuations are generally...'
+    };
+    
+    document.getElementById('calculation-content').innerHTML = `
+        <p><strong>Question:</strong></p>
+        <p>${questions[indexId]}</p>
+        <p><strong>Calculation:</strong></p>
+        <p>The index represents the weighted average of responses, normalized to a 0-100 scale.</p>
+    `;
 }
 
 // Load and create plot
@@ -72,10 +86,15 @@ async function loadPlotData(plotType) {
         title: titles[plotType],
         xaxis: {
             title: 'Date',
-            rangeslider: {}
+            rangeslider: {
+                visible: true,
+                thickness: 0.05
+            }
         },
         yaxis: {
-            title: 'Confidence Index Value'
+            title: 'Confidence Index Value',
+            range: [0, 100],
+            fixedrange: false
         },
         font: {
             family: 'Open Sans, sans-serif'

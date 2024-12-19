@@ -98,14 +98,14 @@ async function loadPlotData(plotType) {
     const layout = {
         title: {
             text: titles[plotType],
-            y: 0.95,
+            y: 0.98,
             font: {
                 size: 16,
                 weight: 500
             },
             yanchor: 'bottom',
             pad: {
-                b: 20
+                b: 30
             }
         },
         height: 600,
@@ -137,16 +137,19 @@ async function loadPlotData(plotType) {
             showgrid: true,
             gridcolor: '#E5E5E5',
             zeroline: false,
-            fixedrange: false
+            fixedrange: false,
+            margin: {
+                l: 70
+            }
         },
         font: {
             family: 'Open Sans, sans-serif',
             size: 12
         },
         margin: {
-            l: 50,
+            l: 80,
             r: 30,
-            t: 80,
+            t: 100,
             b: 50,
             pad: 0
         },

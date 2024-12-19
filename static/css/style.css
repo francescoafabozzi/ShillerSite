@@ -38,6 +38,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: bold;
 }
 
 .collapsible-header::after {
@@ -47,7 +48,7 @@ body {
 }
 
 .collapsible-header:hover {
-    background-color: #004c99;
+    background-color: #f8f9fa;
 }
 
 .collapsible-content {

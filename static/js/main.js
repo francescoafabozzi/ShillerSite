@@ -95,9 +95,14 @@ async function loadPlotData(plotType) {
     const layout = {
         title: {
             text: titles[plotType],
+            y: 0.95,
             font: {
                 size: 16,
                 weight: 500
+            },
+            yanchor: 'bottom',
+            pad: {
+                b: 20
             }
         },
         xaxis: {
@@ -130,7 +135,7 @@ async function loadPlotData(plotType) {
         margin: {
             l: 50,
             r: 30,
-            t: 50,
+            t: 80,
             b: 50,
             pad: 0
         },

@@ -107,45 +107,71 @@ async function loadPlotData(plotType) {
             rangeslider: {
                 visible: true,
                 thickness: 0.03,
-                bgcolor: '#f5f5f5'
+                bgcolor: '#f5f5f5',
+                borderwidth: 0
             },
             rangeselector: {
-                buttons: [{
-                    step: 'all',
-                    label: 'Reset'
-                }]
-            }
+                visible: false
+            },
+            showspikes: false
         },
         yaxis: {
             title: '',
             range: [40, 100],
             showgrid: true,
             gridcolor: '#E5E5E5',
-            zeroline: false
+            zeroline: false,
+            fixedrange: false
         },
         font: {
             family: 'Open Sans, sans-serif',
             size: 12
         },
         margin: {
-            l: 40,
-            r: 20,
-            t: 40,
-            b: 40
+            l: 50,
+            r: 30,
+            t: 50,
+            b: 50,
+            pad: 0
         },
         showlegend: true,
         legend: {
             x: 0,
             y: 1.1,
-            orientation: 'h'
+            orientation: 'h',
+            xanchor: 'left',
+            font: {
+                size: 12
+            }
         },
         plot_bgcolor: 'white',
-        paper_bgcolor: 'white'
+        paper_bgcolor: 'white',
+        shapes: [],
+        annotations: []
     };
 
     const config = {
-        displayModeBar: false,
-        responsive: true
+        displayModeBar: true,
+        displaylogo: false,
+        responsive: true,
+        modeBarButtonsToRemove: [
+            'zoom2d',
+            'pan2d',
+            'select2d',
+            'lasso2d',
+            'zoomIn2d',
+            'zoomOut2d',
+            'autoScale2d',
+            'resetScale2d',
+            'toggleSpikelines'
+        ],
+        toImageButtonOptions: {
+            format: 'svg',
+            filename: 'yale_confidence_index',
+            height: 500,
+            width: 700,
+            scale: 1
+        }
     };
     
     Plotly.newPlot('plot-container', [traceIndividual, traceInstitutional], layout, config);

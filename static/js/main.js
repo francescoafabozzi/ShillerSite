@@ -98,39 +98,22 @@ async function loadPlotData(plotType) {
             font: {
                 size: 16,
                 weight: 500
-            },
-            y: 0.95
+            }
         },
         xaxis: {
             title: '',
             showgrid: true,
             gridcolor: '#E5E5E5',
-            tickformat: '%Y',
-            dtick: 'M12',
             rangeslider: {
                 visible: true,
                 thickness: 0.03,
                 bgcolor: '#f5f5f5'
             },
             rangeselector: {
-                buttons: [
-                    {
-                        step: 'all',
-                        label: 'Reset'
-                    },
-                    {
-                        step: 'year',
-                        stepmode: 'backward',
-                        count: 5,
-                        label: '5Y'
-                    },
-                    {
-                        step: 'year',
-                        stepmode: 'backward',
-                        count: 1,
-                        label: '1Y'
-                    }
-                ]
+                buttons: [{
+                    step: 'all',
+                    label: 'Reset'
+                }]
             }
         },
         yaxis: {
@@ -150,30 +133,6 @@ async function loadPlotData(plotType) {
             t: 40,
             b: 40
         },
-// Toggle between different series views
-function toggleSeries(mode) {
-    const buttons = document.querySelectorAll('.toggle-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    document.querySelector(`[onclick="toggleSeries('${mode}')"]`).classList.add('active');
-
-    const update = {
-        visible: []
-    };
-
-    switch(mode) {
-        case 'individual':
-            update.visible = [true, false];
-            break;
-        case 'institutional':
-            update.visible = [false, true];
-            break;
-        default: // both
-            update.visible = [true, true];
-    }
-
-    Plotly.restyle('plot-container', update);
-}
-
         showlegend: true,
         legend: {
             x: 0,

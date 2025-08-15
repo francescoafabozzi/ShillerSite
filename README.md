@@ -53,14 +53,16 @@ To test the site locally before deploying:
 
 ```
 ├── index.html              # Main HTML file (GitHub Pages entry point)
-├── static/
+├── static/                 # All static assets
 │   ├── css/
 │   │   └── style.css      # Custom styles
 │   ├── js/
 │   │   └── main.js        # JavaScript functionality
 │   ├── data/              # Data files (CSV, Excel, PDF)
 │   └── images/            # Images including Yale logo
-└── README.md              # This file
+├── README.md              # This file
+├── DEPLOYMENT_GUIDE.md    # Detailed setup instructions
+└── .gitignore             # Git exclusions
 ```
 
 ## Important Notes

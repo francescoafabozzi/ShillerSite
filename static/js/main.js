@@ -191,8 +191,7 @@ async function loadPlotData(plotType) {
       displaylogo: false,
       responsive: true,
       modeBarButtonsToRemove: [
-        'zoom2d','pan2d','select2d','lasso2d','zoomIn2d',
-        'zoomOut2d','autoScale2d','resetScale2d','toggleSpikelines'
+        'select2d','lasso2d','toggleSpikelines'
       ],
       toImageButtonOptions: {
         format: 'svg',
@@ -206,6 +205,17 @@ async function loadPlotData(plotType) {
     // 9) Render the figure
     Plotly.newPlot('plot-container', [traceInstitutional, traceIndividual], layout, config);
   }
+
+// Reset chart zoom to default view
+function resetChartZoom() {
+    const plotContainer = document.getElementById('plot-container');
+    if (plotContainer && plotContainer.data) {
+        Plotly.relayout(plotContainer, {
+            'xaxis.range': ['2001-01-01', new Date().toISOString().split('T')[0]],
+            'yaxis.autorange': true
+        });
+    }
+}
 
 // Download CSV function
 function downloadCSV() {
